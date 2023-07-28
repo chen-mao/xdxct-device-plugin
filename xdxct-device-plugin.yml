@@ -21,7 +21,7 @@ spec:
       priorityClassName: "system-node-critical"
       containers:
       - image: xdxct/k8s-device-plugin:1.0
-        name: xdxct-device-plugin-ctr
+        name: xdxct-device-plugin
         env:
           - name: FAIL_ON_INIT_ERROR
             value: "false"

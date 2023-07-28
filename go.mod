@@ -3,7 +3,7 @@ module xdxct-device-plugin
 go 1.19
 
 require (
-	github.com/chen-mao/go-xdxml v1.0.1
+	github.com/chen-mao/go-xdxml v1.0.2
 	github.com/fsnotify/fsnotify v1.6.0
 	google.golang.org/grpc v1.51.0
 	k8s.io/klog/v2 v2.90.1
