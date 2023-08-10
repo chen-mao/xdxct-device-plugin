@@ -1,1 +1,1 @@
-docker build -t xdxct/k8s-device-plugin:1.0 .
+docker build -t xdxct/k8s-device-plugin:devel .

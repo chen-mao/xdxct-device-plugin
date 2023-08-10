@@ -32,7 +32,7 @@ func GetDevices() []*pluginapi.Device {
 		fmt.Printf("ID: %v\n", ID)
 
 		devs = append(devs, &pluginapi.Device{
-			ID:     ID,
+			ID:     "0x" + ID[:8],
 			Health: pluginapi.Healthy,
 		})
 	}
