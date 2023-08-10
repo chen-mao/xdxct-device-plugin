@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: xdxct-device-plugin-daemonset
-  namespace: kube-system
 spec:
   selector:
     matchLabels:
@@ -20,7 +19,7 @@ spec:
         effect: NoSchedule
       priorityClassName: "system-node-critical"
       containers:
-      - image: xdxct/k8s-device-plugin:1.0
+      - image: hub.xdxct.com/xdxct-docker/xdxct/k8s-device-plugin:devel
         name: xdxct-device-plugin
         env:
           - name: FAIL_ON_INIT_ERROR
@@ -32,7 +31,10 @@ spec:
         volumeMounts:
         - name: device-plugin
           mountPath: /var/lib/kubelet/device-plugins
+      imagePullSecrets:
+      - name: regcred
       volumes:
       - name: device-plugin
         hostPath:
           path: /var/lib/kubelet/device-plugins
+
