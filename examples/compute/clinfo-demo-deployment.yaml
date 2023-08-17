@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: clinfo-demo
+  name: clinfo-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: clinfo-demo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: clinfo-demo
+    spec:
+      containers:
+        - env:
+            - name: XDXCT_DRIVER_CAPABILITIES
+              value: graphics,compute
+          image: hub.xdxct.com/xdxct-docker/xdxgpu/clinfo-opencl-sample:1.0.0-Demo-rc-1
+          name: clinfo-demo
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /usr/share/X11/xorg.conf.d/10-xdxgpu.conf
+              name: compute-config
+            - mountPath: /tmp/.X11-unix/
+              name: x11
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: regcred
+      volumes:
+        - name: compute-config 
+          configMap:
+            name: config-files
+        - name: x11
+          hostPath:
+            path: /tmp/.X11-unix/

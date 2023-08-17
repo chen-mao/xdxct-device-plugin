@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	log.Println("Loading XDXML")
+	log.Println("<--- Loading XDXML --->")
 	ret := xdxml.Init()
 	if ret != xdxml.SUCCESS {
 		log.Printf("Failed to initialize xdxml: %s.", ret)

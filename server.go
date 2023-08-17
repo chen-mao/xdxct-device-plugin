@@ -152,7 +152,7 @@ func (plugin *XdxctDevicePlugin) Allocate(ctx context.Context, reqs *pluginapi.A
 	for _, req := range reqs.ContainerRequests {
 		response := pluginapi.ContainerAllocateResponse{
 			Envs: map[string]string{
-				"NVIDIA_VISIBLE_DEVICES": strings.Join(req.DevicesIDs, ","),
+				"XDXCT_VISIBLE_DEVICES": strings.Join(req.DevicesIDs, ","),
 			},
 		}
 

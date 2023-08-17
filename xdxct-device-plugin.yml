@@ -21,9 +21,6 @@ spec:
       containers:
       - image: hub.xdxct.com/xdxct-docker/xdxct/k8s-device-plugin:devel
         name: xdxct-device-plugin
-        env:
-          - name: FAIL_ON_INIT_ERROR
-            value: "false"
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

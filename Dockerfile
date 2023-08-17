@@ -27,8 +27,8 @@ RUN export CGO_LDFLAGS_ALLOW='-Wl,--unresolved-symbols=ignore-in-object-files' &
 
 FROM debian:stretch-slim
 
-ENV NVIDIA_VISIBLE_DEVICES=all
-ENV NVIDIA_DRIVER_CAPABILITIES=utility
+ENV XDXCT_VISIBLE_DEVICES=all
+ENV XDXCT_DRIVER_CAPABILITIES=utility
 
 COPY --from=build /go/bin/xdxct-device-plugin /usr/bin/xdxct-device-plugin
 

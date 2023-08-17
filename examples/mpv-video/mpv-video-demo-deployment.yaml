@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: mpv-video-demo
+  name: mpv-video-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mpv-video-demo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: mpv-video-demo
+    spec:
+      containers:
+        - env:
+            - name: DISPLAY
+              value: :0
+            - name: XDG_RUNTIME_DIR
+              value: /var/tmp
+          image: hub.xdxct.com/xdxct-docker/xdxgpu/mpv-video-sample:1.0.0-Demo-rc-1
+          name: mpv-video-demo
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /var/run/dbus
+              name: dbus 
+              readOnly: true
+            - mountPath: /var/lib/dbus/machine-id
+              name: machine-id
+            - mountPath: /tmp/.X11-unix
+              name: x11
+            - mountPath: /tmp/content
+              name: media
+            - mountPath: /usr/share/X11/xorg.conf.d/10-xdxgpu.conf
+              name: mpv-video-config
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: regcred
+      volumes:
+        - name: dbus
+          hostPath:
+            path: /var/run/dbus
+        - name: machine-id
+          hostPath:
+            path: /var/lib/dbus/machine-id
+        - name: x11
+          hostPath:
+            path: /tmp/.X11-unix
+        - name: media
+          hostPath:      
+            path: /media/  
+        - name: mpv-video-config
+          configMap:
+            name: config-files         
