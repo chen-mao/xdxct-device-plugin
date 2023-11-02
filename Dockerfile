@@ -3,9 +3,6 @@ FROM ubuntu:20.04 as build
 RUN  sed -i s@/archive.ubuntu.com/@/mirror.sjtu.edu.cn/@g /etc/apt/sources.list
 RUN  apt-get clean
 
-ENV http_proxy "http://10.211.10.15:8820"
-ENV https_proxy "http://10.211.10.15:8820"
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
         g++ \
         ca-certificates \

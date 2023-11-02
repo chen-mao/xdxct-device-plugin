@@ -19,7 +19,7 @@ spec:
         effect: NoSchedule
       priorityClassName: "system-node-critical"
       containers:
-      - image: hub.xdxct.com/xdxct-docker/xdxct/k8s-device-plugin:devel
+      - image: xdxct/k8s-device-plugin:devel
         name: xdxct-device-plugin
         securityContext:
           allowPrivilegeEscalation: false
