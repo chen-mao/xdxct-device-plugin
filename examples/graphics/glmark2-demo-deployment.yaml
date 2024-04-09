@@ -20,7 +20,7 @@ spec:
         - env:
             - name: DISPLAY
               value: :0
-          image: hub.xdxct.com/xdxct-docker/xdxgpu/glmark2-sample:1.0.0-Demo-rc-1
+          image: hub.xdxct.com/xdxct-docker/opengl-sample:latest
           name: glmark2-demo
           resources: 
             limits:

@@ -3,12 +3,11 @@ kind: Pod
 metadata:
   name: mypod
 spec:
-  restartPolicy: OnFailure
+  restartPolicy: Never
   containers:
   - name: pod-xdxsmi
-    image: hub.xdxct.com/xdxct-docker/xdxgpu/xdxsmi-sample:1.0.0-Demo-rc-1
+    image: hub.xdxct.com/xdxct-docker/xdxsmi-sample:latest
     command: ["bash", "-c", "xdxsmi"]
     resources:
       limits:
         xdxct.com/gpu: 1
-

@@ -18,7 +18,7 @@ spec:
               value: utility
             - name: XDXCT_VISIBLE_DEVICES
               value: all
-          image: hub.xdxct.com/xdxct-docker/xdxgpu/xdxsmi-sample:1.0.0-Demo-rc-1
+          image: hub.xdxct.com/xdxct-docker/xdxsmi-sample:latest
           imagePullPolicy: IfNotPresent
           name: xdxsmi-demo
           command: [ "bash","-c","--" ]

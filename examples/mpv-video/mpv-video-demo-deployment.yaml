@@ -22,9 +22,14 @@ spec:
               value: :0
             - name: XDG_RUNTIME_DIR
               value: /var/tmp
-          image: hub.xdxct.com/xdxct-docker/xdxgpu/mpv-video-sample:1.0.0-Demo-rc-1
+          image: hub.xdxct.com/xdxct-docker/mpv-video-sample:latest
           name: mpv-video-demo
-          resources: {}
+          # resources: {}
+          resources:
+            limits:
+              xdxct.com/gpu: 1
+            requests:
+              xdxct.com/gpu: 1
           stdin: true
           tty: true
           volumeMounts:
@@ -39,6 +44,9 @@ spec:
               name: media
             - mountPath: /usr/share/X11/xorg.conf.d/10-xdxgpu.conf
               name: mpv-video-config
+            - mountPath: /tmp/video
+              name: media-ubuntu
+              readOnly: true
       restartPolicy: Always
       imagePullSecrets:
       - name: regcred
@@ -57,4 +65,7 @@ spec:
             path: /media/  
         - name: mpv-video-config
           configMap:
-            name: config-files         
+            name: config-files  
+        - name: media-ubuntu
+          hostPath:
+            path: /data/video/
