@@ -22,7 +22,7 @@ spec:
               value: :0
             - name: XDG_RUNTIME_DIR
               value: /var/tmp
-          image: hub.xdxct.com/xdxct-docker/xdxgpu/vlc-video-sample:1.0.0-Demo-rc-1
+          image: hub.xdxct.com/xdxct-docker/vlc-video-sample:latest
           name: vlc-video-demo
           resources: {}
           stdin: true

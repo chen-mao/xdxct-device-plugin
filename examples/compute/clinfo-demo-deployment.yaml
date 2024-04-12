@@ -20,9 +20,12 @@ spec:
         - env:
             - name: XDXCT_DRIVER_CAPABILITIES
               value: graphics,compute
-          image: hub.xdxct.com/xdxct-docker/xdxgpu/clinfo-opencl-sample:1.0.0-Demo-rc-1
+          image: hub.xdxct.com/xdxct-docker/clinfo-sample:latest
           name: clinfo-demo
-          resources: {}
+          # resources: {}
+          resources:
+            limits:
+              xdxct.com/gpu: 1
           stdin: true
           tty: true
           volumeMounts:

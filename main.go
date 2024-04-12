@@ -14,13 +14,13 @@ func main() {
 	log.Println("<--- Loading XDXML --->")
 	ret := xdxml.Init()
 	if ret != xdxml.SUCCESS {
-		log.Printf("Failed to initialize xdxml: %s.", ret)
+		log.Fatalf("Failed to initialize XDXML: %v.", ret)
 		os.Exit(1)
 	}
 	defer func() {
 		ret := xdxml.Shutdown()
 		if ret != xdxml.SUCCESS {
-			log.Fatalf("Unable to shutdown NVML: %v", ret)
+			log.Fatalf("Unable to shutdown XDXML: %v", ret)
 		}
 	}()
 

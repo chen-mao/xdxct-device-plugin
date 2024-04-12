@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	xdxml "github.com/chen-mao/go-xdxml/pkg/xdxml"
+
 	pluginapi "k8s.io/kubelet/pkg/apis/deviceplugin/v1beta1"
 )
 
@@ -29,12 +29,16 @@ func GetDevices() []*pluginapi.Device {
 		if ret != xdxml.SUCCESS {
 			log.Fatalf("Unable to get id of device at index %v: %v", ID, ret)
 		}
-		fmt.Printf("ID: %v\n", ID)
+		log.Printf("ID: %v, len: %v\n", ID, len(ID))
 
 		devs = append(devs, &pluginapi.Device{
-			ID:     "0x" + ID[:8],
+			ID:     "0x" + ID,
 			Health: pluginapi.Healthy,
 		})
+
+		for i, dev := range devs {
+			log.Printf("ID%d: %v", i, dev.ID)
+		}
 	}
 
 	return devs

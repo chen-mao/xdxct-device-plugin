@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: xdxct-device-plugin-daemonset
+  namespace: kube-system
 spec:
   selector:
     matchLabels:
@@ -13,13 +14,15 @@ spec:
       labels:
         name: xdxct-device-plugin-ds
     spec:
-      tolerations:
-      - key: xdxct.com/gpu
-        operator: Exists
-        effect: NoSchedule
+      # tolerations:
+      # - key: xdxct.com/gpu
+      #   operator: Exists
+      #   effect: NoSchedule
       priorityClassName: "system-node-critical"
       containers:
-      - image: xdxct/k8s-device-plugin:devel
+      # - image: xdxct/k8s-device-plugin:devel
+      # xdxct/k8s-device-plugin:devel
+      - image: hub.xdxct.com/xdxct-docker/k8s-device-plugin:devel 
         name: xdxct-device-plugin
         securityContext:
           allowPrivilegeEscalation: false
